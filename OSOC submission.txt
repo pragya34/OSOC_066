@@ -1,0 +1,155 @@
+Q 2. What all permissions are there in Linux? State all permissions and different way of changing permissions with example. 
+
+Ownership of Linux files
+Every file and directory on your Unix/Linux system is assigned 3 types of owner, given below.
+
+USER
+A user is the owner of the file. By default, the person who created a file becomes its owner.
+Hence, a user is also sometimes called an owner.
+
+GROUP
+A user- group can contain multiple users. All users belonging to a group will have the same access permissions to the file.
+Suppose you have a project where a number of people require access to a file. 
+Instead of manually assigning permissions to each user, you could add all users to a group, 
+and assign group permission to file such that only this group members and no one else can read or modify the files.
+
+OTHER
+Any other user who has access to a file. 
+This person has neither created the file, nor he belongs to a usergroup who could own the file. 
+Practically, it means everybody else. Hence, when you set the permission for others, it is also referred as set permissions for the world.
+
+Now, the big question arises how does Linux distinguish between these three user types so that a user 
+'A' cannot affect a file which contains some other user 'B's' vital information/data. 
+It is like you do not want your colleague, who works on your Linux computer, to view your images. 
+This is where Permissions set in, and they define user behavior.
+
+Let us understand the Permission system on Linux.
+
+PERMISSION
+Every file and directory in your UNIX/Linux system has following 3 permissions defined for all the 3 owners discussed above.
+
+Read: This permission give you the authority to open and read a file. 
+Read permission on a directory gives you the ability to lists its content.
+Write: The write permission gives you the authority to modify the contents of a file. 
+The write permission on a directory gives you the authority to add, remove and rename files stored in the directory. 
+Consider a scenario where you have to write permission on file but do not have write permission on the directory where the file is stored. 
+You will be able to modify the file contents. But you will not be able to rename, move or remove the file from the directory.
+Execute: In Windows, an executable program usually has an extension ".exe" and which you can easily run. 
+In Unix/Linux, you cannot run a program unless the execute permission is set. 
+If the execute permission is not set, you might still be able to see/modify the program code(provided read & write permissions are set), but not run it.
+
+r = read permission
+w = write permission
+x = execute permission
+- = no permission
+
+Number  	Permission Type  	Symbol
+0	         No Permission	        ---
+1	           Execute              --x
+2	            Write	        -w-
+3	        Execute + Write         -wx
+4	            Read	        r--
+5	        Read + Execute          r-x
+6	         Read +Write	        rw-
+7	     Read + Write +Execute      rwx
+
+Q 6. Using shell scripting write program for sort an Array. Input should be taken from user. 
+
+#!/bin/bash
+echo "enter maximum number"
+read n
+# taking input from user
+echo "enter Numbers in array:"
+for (( i = 0; i < $n; i++ ))
+do
+read nos[$i]
+done
+#printing the number before sorting
+echo "Numbers in an array are:"
+for (( i = 0; i < $n; i++ ))
+do
+echo ${nos[$i]}
+done
+# Now do the Sorting of numbers
+for (( i = 0; i < $n ; i++ ))
+do
+for (( j = $i; j < $n; j++ ))
+do
+if [ ${nos[$i]} -gt ${nos[$j]}  ]; then
+t=${nos[$i]}
+nos[$i]=${nos[$j]}
+nos[$j]=$t
+fi
+done
+done
+# Printing the sorted number
+echo -e "\nSorted Numbers "
+for (( i=0; i < $n; i++ ))
+do
+echo ${nos[$i]}
+done
+
+Q 7.Using Shell scripting write a program to reverse a string. Input should be taken from user. 
+
+#!/bin/bash
+read -p "Enter string:" string
+len=${#string}
+for (( i=$len-1; i>=0; i-- ))
+do
+# "${string:$i:1}"extract single single character from string.
+reverse="$reverse${string:$i:1}"
+done
+echo "$reverse"
+
+Q 8.What is the concept of Branching? How it is useful? Explain with working example. 
+
+Branching is the practice of creating copies of programs or objects in development to work in parallel versions,
+ retaining the original and working on the branch or making different changes to each.
+ Each copy is considered a branch; the original program from which the branch is taken is referred to as the trunk,
+ the baseline, the mainline or the master.
+This document is an in-depth review of the git branch command and a discussion of the overall Git branching model.
+ Branching is a feature available in most modern version control systems. Branching in other VCS's can be an expensive operation in both time and disk space. 
+In Git, branches are a part of your everyday development process. Git branches are effectively a pointer to a snapshot of your changes. 
+When you want to add a new feature or fix a bug—no matter how big or how small—you spawn a new branch to encapsulate your changes. 
+This makes it harder for unstable code to get merged into the main code base, and it gives you the chance to clean up your future's history before merging it into the main branch.
+!!****https://www.atlassian.com/git/tutorials/using-branches****!!
+The implementation behind Git branches is much more lightweight than other version control system models. 
+Instead of copying files from directory to directory, Git stores a branch as a reference to a commit. 
+In this sense, a branch represents the tip of a series of commits—it's not a container for commits. 
+The history for a branch is extrapolated through the commit relationships.
+As you read, remember that Git branches aren't like SVN branches. 
+Whereas SVN branches are only used to capture the occasional large-scale development effort, Git branches are an integral part of your everyday workflow.
+The following content will expand on the internal Git branching architecture
+
+COMMON OPTIONS
+
+git branch
+list all of the branch in your repository.
+
+git branch <name>
+create new branch called name. 
+
+git branch -d <name>
+delete the specified branch. It prevents you from deleting the branch if it has unmerged changes. 
+
+git branch -D <name>
+delete branch even if it has unmerged changes
+
+git branch -m <name>
+remane the current branch to <name>
+
+Q 9.What is Push, Pull and Commit? Explain with example. 
+
+GIT PUSH :- Push your nw branches and data to a remote repository .
+PUshing sends the recent commit history from your local repository up to GitHub.
+If there are other accessing the repository you may need to pull before you can push.
+
+GIT PULL :- A pull grabs any changes from the GitHub repository and merges  them into your local repository.
+
+GIT COMMIT :- Commiting is the process which records changes in the repository.
+think of it as a snapshot of the current status of the project.
+Commits are done locally.
+
+
+
+ 
